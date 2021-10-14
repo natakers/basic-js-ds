@@ -14,32 +14,23 @@ module.exports = class BinarySearchTree {
 
   root() {
     // throw new NotImplementedError('Not implemented');
-    // this.treeroot = null;
-    // console.log('ss');
-    // return this.treeroot;
-    return this.treeroot ? this.treeroot : null
-
-    // if (!this.treeroot) {
-    //   this.treeroot = null;
-    //   return;
-    // }
-    // else this.treeroot = this.treeroot
+    if (this.treeroot) {
+      return this.treeroot = this.treeroot;
+    }
+    else return this.treeroot = null 
     // remove line with error and write your code here
   }
 
   add(data) {
-    // const r = BinarySearchTree.root();
-    console.log('dd');
-
     const newNode = new Node(data);
     console.log(newNode);
     if (!this.treeroot) {
       this.treeroot = newNode;
       return;
     }
-    let currentNode = this.root
+    let currentNode = this.treeroot
     while(currentNode) {
-      if (newNode.value < currentNode.value) {
+      if (newNode.data < currentNode.data) {
         if (!currentNode.left) {
           currentNode.left = newNode
           return
@@ -58,13 +49,42 @@ module.exports = class BinarySearchTree {
     // remove line with error and write your code here
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
+  has(data) {
+    return search(this.treeroot, data)
+    function search(node, data) {
+      if (!node) {
+        return false
+      }
+      if (node.data === data) {
+        return true
+      }
+      if (data < node.data) {
+        return search(node.left, data)
+      }
+      else return search(node.right, data)
+
+    }
+     
     // remove line with error and write your code here
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
+  find(data) {
+    // throw new NotImplementedError('Not implemented');
+
+    return search(this.treeroot, data)
+    function search(node, data) {
+      if (!node) {
+        return null
+      }
+      if (node.data === data) {
+        return node
+      }
+      if (data < node.data) {
+        return search(node.left, data)
+      }
+      else return search(node.right, data)
+
+    }
     // remove line with error and write your code here
   }
 
